@@ -1,0 +1,1 @@
+module.exports = '$red: red !default;'
