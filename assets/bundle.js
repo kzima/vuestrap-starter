@@ -80,8 +80,7 @@
 	    'navbar': _vuestrapBaseComponentsSrcComponentsNavbar2['default'],
 	    'jumbotron': _vuestrapBaseComponentsSrcComponentsJumbotron2['default'],
 	    'modal': _vuestrapBaseComponentsSrcComponentsModal2['default']
-	  },
-	  ready: function ready() {}
+	  }
 	});
 
 /***/ },

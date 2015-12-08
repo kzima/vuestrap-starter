@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
   resolve: {
-    root: [path.resolve('./'), path.resolve('./node_modules/vuestrap-base-components')]
+    root: path.resolve('./')
   },
   entry: [
     './src/index.js'
