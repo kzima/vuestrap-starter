@@ -2,7 +2,7 @@
   "private": true,
   "dependencies": {
     "autoprefixer-loader": "^3.1.0",
-    "vuestrap-base-components": "^0.7.0",
+    "vuestrap-base-components": "^0.8.0",
     "vuestrap-theme-loader": "^0.1.2",
     "html-loader": "^0.3.0",
     "babel-core": "^5.8.33",

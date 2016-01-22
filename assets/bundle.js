@@ -944,7 +944,7 @@
 /* 25 */
 /***/ function(module, exports) {
 
-	module.exports = "<ul class=\"nav\" v-bind:class=\"{ 'nav-stacked': vertical, 'nav-pills': type == 'pills', 'navbar-nav': type == 'navbar' }\">\n  <slot></slot> \n</ul>";
+	module.exports = "<ul v-bind:class=\"{'nav': true, 'nav-stacked': vertical, 'nav-pills': type == 'pills', 'navbar-nav': type == 'navbar' }\">\r\n  <slot></slot> \r\n</ul>";
 
 /***/ },
 /* 26 */
@@ -1297,25 +1297,29 @@
 	  },
 	  methods: {
 	    show: function show() {
+	      var _this2 = this;
+
 	      this.$el.style.display = 'block';
 	      var _this = this;
 	      // wait for the display block, and then add class "in" class on the modal
-	      setTimeout(function () {
+	      this._modalAnimation = setTimeout(function () {
 	        _this.animateBackdrop = true;
-	        setTimeout(function () {
+	        _this2._modalAnimation = setTimeout(function () {
 	          _this.animateModal = true;
 	          _this.$dispatch('shown::modal');
 	        }, _this.fade ? TRANSITION_DURATION : 0);
 	      }, 0);
 	    },
 	    hide: function hide() {
+	      var _this3 = this;
+
 	      var _this = this;
 	      // first animate modal out
 	      this.animateModal = false;
-	      setTimeout(function () {
+	      this._modalAnimation = setTimeout(function () {
 	        // wait for animation to complete and then hide the backdrop
 	        _this.animateBackdrop = false;
-	        setTimeout(function () {
+	        _this3._modalAnimation = setTimeout(function () {
 	          // no hide the modal wrapper
 	          _this.$el.style.display = 'none';
 	          _this.$dispatch('hidden::modal');
@@ -1329,18 +1333,6 @@
 	      }
 	    }
 	  },
-	  ready: function ready() {
-	    var _this2 = this;
-
-	    // support for esc key press
-	    document.addEventListener('keydown', function (e) {
-	      var key = e.which || e.keyCode;
-	      if (key === 27) {
-	        // 27 is esc
-	        _this2.hide();
-	      }
-	    });
-	  },
 	  events: {
 	    // control modal from outside via events
 	    'show::modal': function showModal(id) {
@@ -1353,6 +1345,21 @@
 	        this.hide();
 	      }
 	    }
+	  },
+	  ready: function ready() {
+	    var _this4 = this;
+
+	    // support for esc key press
+	    document.addEventListener('keydown', function (e) {
+	      var key = e.which || e.keyCode;
+	      if (key === 27) {
+	        // 27 is esc
+	        _this4.hide();
+	      }
+	    });
+	  },
+	  destroyed: function destroyed() {
+	    clearTimeout(this._modalAnimation);
 	  }
 	};
 	module.exports = exports['default'];
